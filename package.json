@@ -1,0 +1,75 @@
+{
+  "name": "vue-earphone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^16.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.4.1",
+    "core-js": "^3.4.3",
+    "dns": "^0.2.2",
+    "firebase": "^7.7.0",
+    "hamburgers": "^1.1.3",
+    "hover.css": "^2.3.2",
+    "jquery": "^3.4.1",
+    "loaders.css": "^0.1.2",
+    "popper.js": "^1.16.0",
+    "sweetalert2": "^9.7.0",
+    "swiper": "^5.2.1",
+    "vee-validate": "^2.2.15",
+    "vue": "^2.6.10",
+    "vue-awesome-swiper": "^2.6.7",
+    "vue-axios": "^2.1.5",
+    "vue-i18n": "^8.15.3",
+    "vue-loading-overlay": "^3.2.0",
+    "vue-parallaxy": "^1.1.1",
+    "vue-router": "^3.1.3",
+    "vue-scroll-reveal": "^1.0.11",
+    "vue-sweetalert2": "^3.0.1",
+    "vue-zoom-on-hover": "^1.0.2",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-plugin-router": "^4.1.0",
+    "@vue/cli-plugin-vuex": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb"
+    ],
+    "rules": {
+      "no-undef": "off",
+      "max-len": 0,
+      "linebreak-style": 0
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
