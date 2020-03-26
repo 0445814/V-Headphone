@@ -45,7 +45,7 @@ export default {
   @include BS-xl {
     height: 75vh;
   }
-  @media (max-height: 767px) and (orientation: landscape) {
+  @media (max-width: 1023px) and (orientation: landscape) {
     display: none !important;
   }
 }
