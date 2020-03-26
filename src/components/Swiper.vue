@@ -72,12 +72,14 @@ export default {
     // background-position: center center;
     // 其他裝置下只有一半高
     @include BS-xl {
+      object-fit: fill;
       height: 50vh;
     }
 
-    @include BS-lg {
-      height: 75vh;
+    @media(orientation: landscape) {
+      height: 80vh;
     }
+
   }
 }
 .swiper-intro {

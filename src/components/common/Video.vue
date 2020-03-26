@@ -1,6 +1,6 @@
 <template>
   <div class="bg-video d-none d-md-block">
-    <video id="video" src="@/static/ath-video.mp4" @ended="delay" autoplay muted></video>
+    <video src="@/static/ath-video.mp4" @ended="delay" autoplay muted ref="bg-video"></video>
     <slot name="content"></slot>
     <slot name="scroll-btn"></slot>
   </div>
@@ -10,9 +10,9 @@
 export default {
   methods: {
     delay() {
+      const vm = this;
       setTimeout(() => {
-        const video = document.getElementById('video');
-        video.play();
+        vm.$refs['bg-video'].play();
       }, 5000);
     },
   },
@@ -44,6 +44,9 @@ export default {
 
   @include BS-xl {
     height: 75vh;
+  }
+  @media (max-height: 767px) and (orientation: landscape) {
+    display: none !important;
   }
 }
 </style>
