@@ -1,11 +1,10 @@
 <template>
   <div>
     <keep-alive>
-    <Video>
-      <div slot="content" class="text-white p-3">
-      </div>
-      <ScrollBtn slot="scroll-btn" class="d-none d-md-block" />
-    </Video>
+      <Video>
+        <div slot="content" class="text-white p-3"></div>
+        <ScrollBtn slot="scroll-btn" class="d-none d-md-block" />
+      </Video>
     </keep-alive>
     <!-- 輪播圖 -->
     <Swiper />

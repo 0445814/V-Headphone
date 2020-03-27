@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row">
         <!-- 左方產品分類 -->
-        <div class="col-lg-3">
+        <div class="col-lg-3 d-none d-lg-block">
           <div class="list-group sticky-top mb-5">
             <a
               href="#"

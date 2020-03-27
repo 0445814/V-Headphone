@@ -26,7 +26,10 @@
       <img :src="LOGO" class="img-fluid" width="120" alt="V-Headphone|V-ヘッドホン LOGO" />
     </router-link>
 
-    <div class="collapse navbar-collapse ml-xl-6 order-2 order-xl-1" id="navbarNav">
+    <div
+      class="collapse navbar-collapse ml-xl-6 order-2 order-xl-1 d-none d-xl-block"
+      id="navbarNav"
+    >
       <ul class="navbar-nav">
         <!-- 其他裝置下的會員登入與註冊 -->
         <li class="nav-item d-flex d-xl-none">
@@ -86,15 +89,6 @@
             <span class="hvr-underline-from-left">平輸代購</span>
           </router-link>
         </li>
-        <!--// TODO 研究中 -->
-        <!-- <li class="nav-item">
-          <router-link
-            class="nav-link p-3 px-4"
-            to="/"
-          >
-            <span class="hvr-underline-from-left">專欄</span>
-          </router-link>
-        </li> -->
         <li class="nav-item">
           <router-link class="nav-link p-3 px-4" to="/warranty">
             <span class="hvr-underline-from-left">支援</span>
@@ -110,15 +104,6 @@
           <i class="fal fa-user-circle"></i>
         </router-link>
       </li>
-      <!-- // TODO 應該會改為 FB messenger -->
-      <!-- <li class="nav-item">
-        <router-link
-          class="d-none d-xl-block py-3 px-4"
-          to="/"
-        >
-          <i class="fal fa-comment-dots"></i>
-        </router-link>
-      </li> -->
 
       <!-- 購物車按鈕 -->
       <li class="nav-item">
@@ -224,33 +209,13 @@
       </div>
     </div>
 
-    <!-- Message Modal -->
-    <!-- <div
-      class="modal fade"
-      id="messageModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="messageModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="messageModalLabel">留言板</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    <Sidebar
+      class="d-xl-none"
+      :isActive="isActive"
+      @sidebarGo="goNewArrival"
+      @sidebarClose="isActive = false"
+    ></Sidebar>
+    <div class="bg-active" @click="isActive = false" v-if="isActive"></div>
   </nav>
 </template>
 
@@ -275,6 +240,9 @@ export default {
     };
   },
 
+  components: {
+    Sidebar: () => import('@/components/common/Sidebar.vue'),
+  },
   watch: {
     /**
      *  監聽路由變動，決定切換 LOGO 圖片與 navbar 樣式。
@@ -360,11 +328,15 @@ export default {
     goNewArrival() {
       const vm = this;
       // 點擊新品上市，滾動至錨點
-      return vm.$route.path === '/'
-        ? vm.scrollToAnchor('#new-arrival')
-        : vm.$router.push('/').then(() => {
+      if (vm.$route.path === '/') {
+        vm.scrollToAnchor('#new-arrival');
+      } else {
+        vm.$router.push('/').then(() => {
           vm.scrollToAnchor('#new-arrival');
         });
+      }
+
+      vm.isActive = false;
     },
     scrollToAnchor(anchor) {
       $('html, body')
@@ -472,5 +444,17 @@ li:hover {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
+}
+
+.bg-active {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 99998;
 }
 </style>
