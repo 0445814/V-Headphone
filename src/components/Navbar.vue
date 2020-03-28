@@ -23,7 +23,21 @@
 
     <!-- LOGO -->
     <router-link id="LOGO" class="p-3 ml-xl-6" to="/">
-      <img :src="LOGO" class="img-fluid" width="120" alt="V-Headphone|V-ヘッドホン LOGO" />
+      <!-- <img :src="LOGO" class="img-fluid" width="120" alt="V-Headphone|V-ヘッドホン LOGO" /> -->
+      <img
+        src="@/assets/images/LOGO-dark.png"
+        class="img-fluid"
+        width="120"
+        alt="V-Headphone|V-ヘッドホン LOGO"
+        v-if="navActive"
+      />
+      <img
+        src="@/assets/images/LOGO-white.png"
+        class="img-fluid"
+        width="120"
+        alt="V-Headphone|V-ヘッドホン LOGO"
+        v-else
+      />
     </router-link>
 
     <div
@@ -225,10 +239,6 @@ export default {
     return {
       // 漢堡選單啟用樣式
       isActive: false,
-      // LOGO 圖片(黑、白)
-      LOGO: 'https://i.imgur.com/oiGjEDP.png',
-      logoWhite: 'https://i.imgur.com/oiGjEDP.png',
-      logoBlack: 'https://i.imgur.com/uAIISWn.png',
       // 依據 navbar 的高度，決定顯示黑、白 LOGO
       navHeight: 0,
       /**
@@ -268,7 +278,6 @@ export default {
         vm.navActive = true;
       } else {
         vm.navActive = false;
-        vm.LOGO = vm.logoBlack;
       }
     },
   },
@@ -286,18 +295,15 @@ export default {
       // 當 navbar 距離 top 的距離大於 0 或等於 0 時，改變樣式
       if (vm.navHeight > 0) {
         vm.navActive = true;
-        vm.LOGO = vm.logoBlack;
 
         // 只有在 /# 與 /product 路由，滾動至最上層會有背景透明樣式
       } else if (vm.navHeight === 0 && (path === '/product' || path === '/')) {
         vm.navActive = false;
-        vm.LOGO = vm.logoWhite;
       }
     },
     // 在 hover 時，改變 LOGO 圖示(白或黑)
     navMouseEnter() {
       this.navActive = true;
-      this.LOGO = this.logoBlack;
     },
     navMouseLeave() {
       const navTopHeight = Math.floor($('nav').offset().top);
@@ -305,7 +311,6 @@ export default {
 
       if (navTopHeight === 0 && (path === '/product' || path === '/')) {
         this.navActive = false;
-        this.LOGO = this.logoWhite;
       }
     },
     // navbar 代理品牌的 hover 事件
@@ -377,7 +382,6 @@ export default {
     const { path } = this.$route;
     if (path !== '/' && path !== '/product') {
       vm.navActive = true;
-      this.LOGO = 'https://i.imgur.com/uAIISWn.png';
     }
   },
 };

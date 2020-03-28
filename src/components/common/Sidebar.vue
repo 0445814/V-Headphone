@@ -1,13 +1,13 @@
 <template>
   <nav class="sidebar" :class="{ active: isActive, 'box-shadow': isActive }">
-    <div class="sidebar-content">
+    <div class="sidebar-content w-100">
       <div class="close-btn text-secondary" @click="sidebarClose" v-show="isActive">
         <i class="fal fa-times fa-2x"></i>
       </div>
 
-      <ul class="sidebar-item d-flex justify-content-center list-unstyled p-0 mt-6 mb-0">
-        <router-link class="nav-link w-100" to="/user/login" tag="li">會員登入</router-link>
-        <router-link class="nav-link w-100" to="/user/register" tag="li">註冊</router-link>
+      <ul class="d-flex justify-content-center list-unstyled p-0 mt-6 mb-0">
+        <router-link class="sidebar-item nav-link w-100" to="/user/login" tag="li">會員登入</router-link>
+        <router-link class="sidebar-item nav-link w-100" to="/user/register" tag="li">註冊</router-link>
       </ul>
 
       <ul class="list-unstyled">
@@ -16,13 +16,12 @@
             新品上市
           </a>
         </li>
-        <li class="py-4 px-3" @click="isShow = !isShow">
-          代理品牌 <i class="arrow fal fa-angle-down" :class="{ rotate: isShow }"></i>
+        <li class="py-4 px-3" :class="{ 'sidebar-item': !isRotate }" @click="isShow">
+          代理品牌 <i class="arrow fal fa-angle-down pl-1" :class="{ rotate: isRotate }"></i>
         </li>
-        <ul class="sidebar-item list-unstyled sidebar-brand-list">
+        <ul class="sidebar-brand-list list-unstyled">
           <a
-            class="d-block pl-5 pb-3"
-            to=""
+            class="d-block py-2 pr-2 pl-5"
             v-for="category in this.$store.state.brands.Headphone"
             tag="li"
             @click="changeCategory(category)"
@@ -31,8 +30,7 @@
             {{ category }}</a
           >
           <a
-            class="d-block pl-5 pb-3"
-            to=""
+            class="d-block py-2 pr-2 pl-5"
             v-for="category in this.$store.state.brands.DAC"
             tag="li"
             @click="changeCategory(category)"
@@ -42,10 +40,10 @@
           >
         </ul>
         <router-link class="sidebar-item nav-link text-black py-4 px-3" to="/parallel_import">
-          <span class="hvr-underline-from-left">平輸代購</span>
+          平輸代購
         </router-link>
         <router-link class="sidebar-item nav-link text-black py-4 px-3 mb-5" to="/warranty">
-          <span class="hvr-underline-from-left">支援</span>
+          支援
         </router-link>
 
         <div class="sidebar-follow d-flex justify-content-center align-items-center flex-column">
@@ -94,6 +92,42 @@
   </nav>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      isRotate: false,
+    };
+  },
+  props: ['isActive'],
+  methods: {
+    sidebarGo() {
+      this.$emit('sidebarGo');
+    },
+    sidebarClose() {
+      this.$emit('sidebarClose');
+    },
+    changeCategory(selectedCategory) {
+      const vm = this;
+      vm.$store.dispatch('changeCategory', selectedCategory).then(() => {
+        // 當前若不是 /product 路由，則轉址
+        if (vm.$route.path !== '/product') {
+          vm.$router.push('/product');
+        }
+        vm.sidebarClose();
+      });
+    },
+    isShow() {
+      $('.sidebar-brand-list')
+        .stop()
+        .slideToggle();
+
+      this.isRotate = !this.isRotate;
+    },
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 @import "@/assets/scss/customMixins.scss";
 
@@ -122,8 +156,20 @@
   }
   .sidebar-item {
     border-bottom: 1px solid silver;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
   }
 
+  .sidebar-brand-list {
+    display: none;
+    border-bottom: 1px solid silver;
+    a {
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
   .close-btn {
     position: absolute;
     top: 15px;
@@ -136,8 +182,7 @@
 }
 
 .active {
-  display: inline-block;
-  left: 0;
+  // display: inline-block;
   transform: translateX(0%);
   transition: all 0.5s;
 }
@@ -151,46 +196,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      isShow: false,
-    };
-  },
-  props: ['isActive'],
-  watch: {
-    isShow() {
-      const vm = this;
-      if (vm.isShow) {
-        $('.sidebar-brand-list')
-          .stop()
-          .slideDown();
-      } else {
-        $('.sidebar-brand-list')
-          .stop()
-          .slideUp();
-      }
-    },
-  },
-  methods: {
-    sidebarGo() {
-      this.$emit('sidebarGo');
-    },
-    sidebarClose() {
-      this.$emit('sidebarClose');
-    },
-    changeCategory(selectedCategory) {
-      const vm = this;
-      vm.$store.dispatch('changeCategory', selectedCategory).then(() => {
-        // 當前若不是 /product 路由，則轉址
-        if (vm.$route.path !== '/product') {
-          vm.$router.push('/product');
-        }
-        vm.sidebarClose();
-      });
-    },
-  },
-};
-</script>
