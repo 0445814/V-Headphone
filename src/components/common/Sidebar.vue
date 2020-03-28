@@ -1,6 +1,10 @@
 <template>
   <nav class="sidebar" :class="{ active: isActive, 'box-shadow': isActive }">
-    <div class="sidebar-content position-relative">
+    <div class="sidebar-content">
+      <div class="close-btn text-secondary" @click="sidebarClose" v-show="isActive">
+        <i class="fal fa-times fa-2x"></i>
+      </div>
+
       <ul class="sidebar-item d-flex justify-content-center list-unstyled p-0 mt-6 mb-0">
         <router-link class="nav-link w-100" to="/user/login" tag="li">會員登入</router-link>
         <router-link class="nav-link w-100" to="/user/register" tag="li">註冊</router-link>
@@ -86,21 +90,19 @@
           </div>
         </div>
       </ul>
-      <div class="close-btn" @click="sidebarClose" v-show="isActive">
-        <i class="fal fa-times fa-2x"></i>
-      </div>
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
-@import "~hamburgers/_sass/hamburgers/hamburgers.scss";
+@import "@/assets/scss/customMixins.scss";
 
 .sidebar {
   display: flex;
   justify-content: center;
   position: fixed;
   top: 0;
+  left: 0;
   transform: translateX(-101%);
   transition: all 0.5s;
   width: 80%;
@@ -110,8 +112,12 @@
   color: black;
   z-index: 99999;
 
+  @include BS-sm {
+    width: 65%;
+  }
+
   .sidebar-content {
-    overflow-y: auto;
+    overflow: auto;
     height: 100%;
   }
   .sidebar-item {
@@ -121,7 +127,7 @@
   .close-btn {
     position: absolute;
     top: 15px;
-    left: 340px;
+    left: 110%;
   }
 }
 

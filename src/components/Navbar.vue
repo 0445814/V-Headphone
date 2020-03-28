@@ -211,7 +211,7 @@
 
     <Sidebar
       class="d-xl-none"
-      :isActive="isActive"
+      :is-active="isActive"
       @sidebarGo="goNewArrival"
       @sidebarClose="isActive = false"
     ></Sidebar>
