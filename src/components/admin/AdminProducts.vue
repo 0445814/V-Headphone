@@ -254,7 +254,7 @@ export default {
     };
   },
   components: {
-    Pagination: () => import('@/components/Pagination'),
+    Pagination: () => import('@/components/common/Pagination'),
   },
   computed: {
     // 監看 VueX 所有產品、類型、品牌

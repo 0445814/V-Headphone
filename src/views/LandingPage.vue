@@ -73,7 +73,7 @@ export default {
     Video: () => import('@/components/common/Video.vue'),
     ScrollBtn: () => import('@/components/common/ScrollButton.vue'),
     // 輪播圖
-    Swiper: () => import('@/components/Swiper'),
+    Swiper: () => import('@/components/common/Swiper'),
     // 首頁介紹
     Intro: () => import('@/components/Intro'),
     // 新品上市

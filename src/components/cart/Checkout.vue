@@ -9,48 +9,28 @@
         @click="showCarts"
       >
         訂單細節
-        <i
-          class="arrowIcon fal fa-arrow-circle-up ml-1"
-          :class="{'arrowRotate': arrowRotate}"
-        ></i>
+        <i class="arrowIcon fal fa-arrow-circle-up ml-1" :class="{ arrowRotate: arrowRotate }"></i>
       </button>
       <div class="carts">
         <table class="table">
           <thead>
-            <th
-              colspan="2"
-              width="100"
-            >品名</th>
+            <th colspan="2" width="100">品名</th>
             <th class="text-right">數量</th>
             <th class="text-right">總計</th>
           </thead>
           <tbody>
-            <tr
-              v-for="item in carts.carts"
-              :key="item.id"
-            >
+            <tr v-for="item in carts.carts" :key="item.id">
               <td>
-                <img
-                  class="img-fluid"
-                  width="56"
-                  :src="item.product.imageUrl"
-                  alt
-                />
+                <img class="img-fluid" width="56" :src="item.product.imageUrl" alt />
               </td>
               <td class="align-middle">
-                {{item.product.title}}
-                <p
-                  class="text-success m-0"
-                  v-if="item.final_total !== item.total"
-                >已套用優惠券</p>
+                {{ item.product.title }}
+                <p class="text-success m-0" v-if="item.final_total !== item.total">已套用優惠券</p>
               </td>
-              <td class="text-right align-middle">{{item.qty}}</td>
+              <td class="text-right align-middle">{{ item.qty }}</td>
               <td class="text-right align-middle">
-                <span v-if="item.final_total === item.total">{{item.total|currency}}</span>
-                <span
-                  v-else
-                  class="text-success"
-                >{{item.final_total|currency}}</span>
+                <span v-if="item.final_total === item.total">{{ item.total | currency }}</span>
+                <span v-else class="text-success">{{ item.final_total | currency }}</span>
               </td>
             </tr>
           </tbody>
@@ -59,28 +39,19 @@
               colspan="3"
               class="text-right text-success"
               v-if="carts.total !== carts.final_total"
-            >折扣價</td>
-            <td
-              colspan="3"
-              class="text-right"
-              v-else
-            >總計</td>
+            >
+              折扣價
+            </td>
+            <td colspan="3" class="text-right" v-else>總計</td>
 
-            <td
-              class="text-right text-success"
-              v-if="carts.total !== carts.final_total"
-            >{{ carts.final_total | currency}}</td>
-            <td
-              class="text-right"
-              v-else
-            >{{ carts.total | currency }}</td>
+            <td class="text-right text-success" v-if="carts.total !== carts.final_total">
+              {{ carts.final_total | currency }}
+            </td>
+            <td class="text-right" v-else>{{ carts.total | currency }}</td>
           </tfoot>
         </table>
       </div>
-      <form
-        class="border-bottom mb-5"
-        @submit.prevent="createOrder"
-      >
+      <form class="border-bottom mb-5" @submit.prevent="createOrder">
         <div class="form-row">
           <div class="form-group col-md-6">
             <div class="input-group border-bottom">
@@ -98,10 +69,7 @@
                 v-validate="'required'"
               />
             </div>
-            <span
-              class="text-danger ml-5"
-              v-if="errors.has('name')"
-            >姓名必須輸入</span>
+            <span class="text-danger ml-5" v-if="errors.has('name')">姓名必須輸入</span>
           </div>
           <div class="form-group col-md-6">
             <div class="input-group border-bottom">
@@ -119,10 +87,7 @@
                 v-validate="'required'"
               />
             </div>
-            <span
-              class="text-danger ml-5"
-              v-if="errors.has('tel')"
-            >手機必須輸入</span>
+            <span class="text-danger ml-5" v-if="errors.has('tel')">手機必須輸入</span>
           </div>
         </div>
         <div class="form-group">
@@ -141,10 +106,9 @@
               v-validate="'required|email'"
             />
           </div>
-          <span
-            class="text-danger ml-5"
-            v-if="errors.has('email')"
-          >{{errors.first('email')}}</span>
+          <span class="text-danger ml-5" v-if="errors.has('email')">{{
+            errors.first("email")
+          }}</span>
         </div>
 
         <div class="form-group">
@@ -163,10 +127,7 @@
               v-validate="'required'"
             />
           </div>
-          <span
-            class="text-danger ml-5"
-            v-if="errors.has('address')"
-          >住址必須輸入</span>
+          <span class="text-danger ml-5" v-if="errors.has('address')">住址必須輸入</span>
         </div>
         <div class="form-group">
           <label>
@@ -177,7 +138,6 @@
           <div class="form-row justify-content-center">
             <div class="form-group col-md-5">
               <div class="custom-control custom-radio custom-control-inline ml-5 ml-md-0">
-
                 <!-- 選擇超商取貨，則 convenience 為 true，顯示超商門市位址欄位-->
                 <input
                   type="radio"
@@ -187,37 +147,27 @@
                   @change="convenience = true"
                   required
                 />
-                <label
-                  class="custom-control-label"
-                  for="convenience-store"
-                >超商取貨</label>
+                <label class="custom-control-label" for="convenience-store">超商取貨</label>
               </div>
             </div>
             <div class="form-group col-md-5">
               <div class="custom-control custom-radio custom-control-inline">
-
                 <!-- 選擇宅配，超商門市位址 delivery 為 false，則在下一頁訂單資訊表中不會顯示超商門市地址 -->
                 <input
                   type="radio"
                   name="delivery"
                   class="custom-control-input"
                   id="home-delivery"
-                  @change="convenience = false;"
+                  @change="convenience = false"
                 />
-                <label
-                  class="custom-control-label"
-                  for="home-delivery"
-                >宅配到府</label>
+                <label class="custom-control-label" for="home-delivery">宅配到府</label>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 如果選擇超商取貨，才會顯示超商地址 -->
-        <div
-          class="form-group delivery"
-          v-if="convenience"
-        >
+        <div class="form-group delivery" v-if="convenience">
           <div class="input-group border-bottom mb-4">
             <div class="input-group-prepend">
               <div class="input-group-text bg-white border-0">
@@ -233,10 +183,9 @@
               v-validate="'required'"
             />
           </div>
-          <span
-            class="text-danger ml-5"
-            v-if="errors.has('convenience')"
-          >若選擇超商取貨，則超商地址為必塡欄位</span>
+          <span class="text-danger ml-5" v-if="errors.has('convenience')"
+            >若選擇超商取貨，則超商地址為必塡欄位</span
+          >
         </div>
         <div class="form-group">
           <label for="orderMessage">
@@ -255,10 +204,7 @@
         </div>
 
         <div class="text-right">
-          <button
-            type="submit"
-            class="btn btn-outline-dark rounded-0 px-5 mb-5"
-          >送出訂單</button>
+          <button type="submit" class="btn btn-outline-dark rounded-0 px-5 mb-5">送出訂單</button>
         </div>
       </form>
     </div>

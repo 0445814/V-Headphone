@@ -90,13 +90,6 @@
         />
       </div>
     </div>
-
-    <div class="text-center">
-      <button
-        type="submit"
-        class="btn btn-outline-dark rounded-0 px-5 mb-5"
-      >確認註冊</button>
-    </div>
   </form>
 </template>
 

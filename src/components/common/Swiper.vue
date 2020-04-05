@@ -18,7 +18,7 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
-import '../../node_modules/swiper/css/swiper.css';
+import 'swiper/css/swiper.css';
 
 export default {
   data() {
@@ -59,7 +59,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../assets/scss/customMixins.scss";
+@import "@/assets/scss/customMixins.scss";
 
 #swiper {
   img {

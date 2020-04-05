@@ -17,33 +17,33 @@ const routes = [{
   },
   {
     path: 'product',
-    component: () => import('@/components/Product.vue'),
+    component: () => import('@/components/product/Product.vue'),
   },
   {
     path: 'product/:productId',
-    component: () => import('@/components/ProductItem.vue'),
+    component: () => import('@/components/product/ProductItem.vue'),
   },
   {
     path: 'cart',
-    component: () => import('@/components/Cart.vue'),
+    component: () => import('@/components/cart/Cart.vue'),
     children: [
       {
         path: '',
-        component: () => import('@/components/CartForm.vue'),
+        component: () => import('@/components/cart/CartForm.vue'),
       },
       {
         path: 'checkout',
-        component: () => import('@/components/Checkout.vue'),
+        component: () => import('@/components/cart/Checkout.vue'),
       },
       {
         path: 'checkout/:orderId',
-        component: () => import('@/components/CheckoutOrder.vue'),
+        component: () => import('@/components/cart/CheckoutOrder.vue'),
       },
     ],
   },
   {
     path: 'warranty',
-    component: () => import('@/components/Warranty.vue'),
+    component: () => import('@/views/Warranty.vue'),
   },
   {
     path: 'parallel_import',
@@ -55,22 +55,18 @@ const routes = [{
   },
   {
     path: 'user',
-    component: () => import('@/components/Login.vue'),
+    component: () => import('@/components/user/User.vue'),
     children: [{
       path: 'login',
-      component: () => import('@/components/LoginForm.vue'),
+      component: () => import('@/components/user/Login.vue'),
     },
     {
       path: 'forgot_password',
-      component: () => import('@/components/LoginForgotPassword.vue'),
+      component: () => import('@/components/user/LoginForgotPassword.vue'),
     },
     {
       path: 'register',
-      component: () => import('@/components/Register.vue'),
-    },
-    {
-      path: 'register_information',
-      component: () => import('@/components/RegisterInformation.vue'),
+      component: () => import('@/components/user/Register.vue'),
     },
     ],
   },

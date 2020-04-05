@@ -30,9 +30,9 @@ export default new Vuex.Store({
     carts: {
       carts: [],
     },
-    // 使用者登入、註冊表單的 title，預設顯示是會員登入
-    formTitle: '會員登入',
-
+    // // 使用者登入、註冊表單的 title，預設顯示是會員登入
+    // formTitle: '會員登入',
+    tempUser: '',
   },
   mutations: {
     ENTERLOADING(state, payload) {
@@ -70,6 +70,11 @@ export default new Vuex.Store({
     // 改變使用者登入、註冊時的表單 title
     CHANGEFORMTITLE(state, payload) {
       state.formTitle = payload;
+    },
+
+    // 儲存新使用者註冊 EMAIL
+    NEWUSERREGISTER(state, payload) {
+      state.tempUser = payload;
     },
   },
   actions: {
