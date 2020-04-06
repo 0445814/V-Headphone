@@ -131,56 +131,9 @@
                         type="tel"
                         maxlength="16"
                         placeholder="卡號"
+                        required
                       />
                     </div>
-                    <!-- // * 原本的卡號欄位 -->
-                    <!-- <div class="col-3 col-lg-2">
-                      <div class="input-group border-bottom">
-                        <input
-                          type="tel"
-                          class="form-control border-0"
-                          placeholder="xxxx"
-                          maxlength="4"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <span style="line-height: 40px">-</span>
-                    <div class="col-3 col-lg-2">
-                      <div class="input-group border-bottom">
-                        <input
-                          type="tel"
-                          class="form-control border-0"
-                          placeholder="xxxx"
-                          maxlength="4"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <span style="line-height: 40px">-</span>
-                    <div class="col-3 col-lg-2">
-                      <div class="input-group border-bottom">
-                        <input
-                          type="tel"
-                          class="form-control border-0"
-                          placeholder="xxxx"
-                          maxlength="4"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <span style="line-height: 40px">-</span>
-                    <div class="col-3 col-lg-2">
-                      <div class="input-group border-bottom">
-                        <input
-                          type="tel"
-                          class="form-control border-0"
-                          placeholder="xxxx"
-                          maxlength="4"
-                          required
-                        />
-                      </div>
-                    </div> -->
                   </div>
                   <div class="row mb-5">
                     <div class="col-4 col-lg-2">
