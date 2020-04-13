@@ -40,18 +40,6 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      imgUrl:
-        'https://i.pinimg.com/originals/03/0f/f8/030ff804d7399059b4a8cf531a1e5350.jpg',
-      //  是否顯示 YouTube
-      isShow: false,
-    };
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/customMixins.scss";

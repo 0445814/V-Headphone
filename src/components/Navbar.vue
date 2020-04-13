@@ -197,7 +197,7 @@
 
           <a
             class="col-5"
-            style="background: url(https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/79737755_2705488579507181_6351927863922393088_o.jpg?_nc_cat=106&_nc_ohc=wU6DPgeaOicAX9gEuPS&_nc_ht=scontent-tpe1-1.xx&oh=16639c1a54f5bc0b6ce30452c1630580&oe=5E92D139); background-size: cover; background-position: center center;"
+            style="background: url(https://i.imgur.com/1JTx8Ak.jpg); background-size: cover; background-position: center center;"
             href="#"
             @click.prevent="changeCategory('Headphone')"
           >
