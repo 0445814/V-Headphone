@@ -21,7 +21,7 @@
     "loaders.css": "^0.1.2",
     "popper.js": "^1.16.0",
     "sweetalert2": "^9.7.0",
-    "swiper": "^5.2.1",
+    "swiper": "^6.5.1",
     "vee-validate": "^2.2.15",
     "vue": "^2.6.10",
     "vue-awesome-swiper": "^2.6.7",
